@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MZRightBar.iml" filepath="$PROJECT_DIR$/MZRightBar.iml" />
+      <module fileurl="file://E:\android\RightBar\MZRightBar.iml" filepath="E:\android\RightBar\MZRightBar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RightBar.iml" filepath="$PROJECT_DIR$/RightBar.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://E:\android\RightBar\app\app.iml" filepath="E:\android\RightBar\app\app.iml" />
     </modules>
   </component>
 </project>

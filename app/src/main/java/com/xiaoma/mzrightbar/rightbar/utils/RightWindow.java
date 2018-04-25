@@ -37,7 +37,7 @@ public class RightWindow  {
         layoutParams = new WindowManager.LayoutParams();
         DisplayMetrics dm = context.getResources().getDisplayMetrics();
         width = dm.widthPixels;
-        rightTouchW = layoutParams.width = width / 25;
+        rightTouchW = width / 30;
         /* <action android:name="android.intent.action.PACKAGE_ADDED"/>
                 <action android:name="android.intent.action.PACKAGE_REPLACED"/>
                 <action android:name="android.intent.action.PACKAGE_REMOVED"/>*/

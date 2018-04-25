@@ -38,6 +38,7 @@ public class RightBar extends View {
 
     private boolean isTouching=false;
 
+    private boolean isShowLetter=true;
 
     private boolean isShowRight=false;
 
@@ -65,6 +66,7 @@ public class RightBar extends View {
     private int nowY;
     private Bitmap gakki;
     private int alpha;
+    private Paint backgroundPaint;
 
     public RightBar(Context context) {
         this(context,null);
@@ -83,6 +85,7 @@ public class RightBar extends View {
     private void initPaint() {
         textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         textPaint.setTextAlign(Paint.Align.CENTER);
+        backgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     }
 
     public void setAppInfos(List<AppInfo> infos){
@@ -117,7 +120,7 @@ public class RightBar extends View {
             String key = e.getKey();
             List<AppInfo> value = e.getValue();
             if(itemWidth==0){
-                textPaint.setTextSize(sp2px(14));
+                textPaint.setTextSize(sp2px(12));
                 textPaint.getTextBounds(key,0,key.length(),bounds);
                 itemWidth=bounds.width()*3;
                 barTextHeight=bounds.height();
@@ -178,14 +181,23 @@ public class RightBar extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if(isTouching){
-            Paint backgroundPaint=new Paint(Paint.ANTI_ALIAS_FLAG);
             backgroundPaint.setAlpha(alpha);
             canvas.drawBitmap(gakki,new Rect(0,0, gakki.getWidth(), gakki.getHeight()),new Rect(0,0,width,height),backgroundPaint);
            // canvas.drawColor(Color.parseColor("#33000000"));
           //  drawRight(canvas);
             drawLeft(canvas);
+
         }
         if(isShowAPPs){
+            if(isShowLetter){
+                backgroundPaint.setAlpha(100);
+                backgroundPaint.setColor(Color.DKGRAY);
+                canvas.drawCircle(width-itemWidth-itemWidth/2,itemWidth+itemWidth/2,itemWidth,backgroundPaint);
+                textPaint.setColor(Color.WHITE);
+                textPaint.setTextSize(sp2px(14));
+                float v = textPaint.measureText(tempKey);
+                canvas.drawText(tempKey,(width-itemWidth-itemWidth/2),itemWidth+itemWidth/2+barTextHeight/2,textPaint);
+            }
             drawApps(canvas);
         }
 
