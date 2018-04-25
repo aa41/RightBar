@@ -144,7 +144,7 @@ public class RightBar extends View {
                     appLeftTemp=width-itemWidth*2;
                     appTopTemp+=appItemWidth*1.2f;
                 }else if(!ShowAppFromRight && appLeftTemp+appItemWidth>width-itemWidth*2){
-                    appLeftTemp=itemWidth;
+                    appLeftTemp=itemWidth*2;
                     appTopTemp+=appItemWidth*1.2f;
                 }
 
