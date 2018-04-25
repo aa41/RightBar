@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.xiaoma.mzrightbar.MainActivity">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/btn"
+        android:text="显示悬浮窗"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/btn2"
+        android:text="修改背景图片"
+        />
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:max="255"
+        android:id="@+id/seek"
+        android:progress="155"
+        />
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="从右显示"
+        android:checked="true"
+        android:id="@+id/check"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="每行显示条目"
+        android:gravity="left|center"
+        android:textColor="@android:color/black"
+        />
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/radio"
+        >
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:id="@+id/rd3"
+            /><RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="4"
+        android:id="@+id/rd4"
+            /><RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="5"
+        android:id="@+id/rd5"
+            /><RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="6"
+        android:id="@+id/rd6"
+            />
+
+    </RadioGroup>
+
+
+</LinearLayout>
