@@ -56,7 +56,7 @@ public class AppView {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,px,context.getResources().getDisplayMetrics());
     }
 
-    public static Bitmap scaleBitmap(Bitmap bm, float scale){
+    private   Bitmap scaleBitmap(Bitmap bm, float scale){
         int width = bm.getWidth();
         int height = bm.getHeight();
         Matrix matrix = new Matrix();

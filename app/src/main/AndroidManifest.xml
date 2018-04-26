@@ -17,14 +17,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-      <!--  <receiver android:name=".rightbar.utils.RightWindow$AppInstallReceiver">
-            <intent-filter >
-                <action android:name="android.intent.action.PACKAGE_ADDED"/>
-                <action android:name="android.intent.action.PACKAGE_REPLACED"/>
-                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
-                <data android:scheme="package"/>
-            </intent-filter>
-        </receiver>-->
+        <activity android:name=".rightbar.FavoriteActivity" />
+        <!--  <receiver android:name=".rightbar.utils.RightWindow$AppInstallReceiver">
+              <intent-filter >
+                  <action android:name="android.intent.action.PACKAGE_ADDED"/>
+                  <action android:name="android.intent.action.PACKAGE_REPLACED"/>
+                  <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+                  <data android:scheme="package"/>
+              </intent-filter>
+          </receiver>-->
     </application>
 
 </manifest>
