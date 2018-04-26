@@ -34,7 +34,18 @@ public class RightWindow {
     private int rightTouchW;
     private final AppInstallReceiver receiver;
 
-    public RightWindow(Context context) {
+
+    private static RightWindow instance;
+
+    public static RightWindow getInstance(Context context) {
+        if(instance==null){
+            instance = new RightWindow(context);
+        }
+
+        return instance;
+    }
+
+    private RightWindow(Context context) {
         this.context = context;
         windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         rightBar = new RightBar(context);

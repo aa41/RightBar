@@ -16,6 +16,7 @@ import com.xiaoma.mzrightbar.R;
 import com.xiaoma.mzrightbar.rightbar.model.AppDao;
 import com.xiaoma.mzrightbar.rightbar.model.AppInfo;
 import com.xiaoma.mzrightbar.rightbar.model.FavoriteModel;
+import com.xiaoma.mzrightbar.rightbar.utils.RightWindow;
 import com.xiaoma.mzrightbar.rightbar.utils.Utils;
 
 import java.util.ArrayList;
@@ -75,7 +76,7 @@ public class FavoriteActivity extends AppCompatActivity {
         mRealm.close();
     }
 
-    static class A extends RecyclerView.Adapter<A.VH> {
+    class A extends RecyclerView.Adapter<A.VH> {
 
         public List<FavoriteModel> mData = new ArrayList<>();
         private Realm mRealm;
@@ -96,10 +97,12 @@ public class FavoriteActivity extends AppCompatActivity {
             final FavoriteModel model = mData.get(position);
             holder.check.setChecked(model.isChecked());
             holder.tv.setText(model.getAppName());
-            holder.check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
+                public void onClick(View v) {
+                    model.setChecked(!model.isChecked());
+                    notifyDataSetChanged();
+                    if (model.isChecked()) {
                         mRealm.executeTransaction(new Realm.Transaction() {
                             @Override
                             public void execute(Realm realm) {
@@ -107,7 +110,7 @@ public class FavoriteActivity extends AppCompatActivity {
                                 dao.setAppName(model.getAppName());
                                 dao.setPackageName(model.getPackageName());
                                 dao.setFirstLetter(model.getFirstLetter());
-
+                                resetFavorite();
                             }
                         });
                     } else {
@@ -115,14 +118,36 @@ public class FavoriteActivity extends AppCompatActivity {
                         mRealm.executeTransaction(new Realm.Transaction() {
                             @Override
                             public void execute(Realm realm) {
-                                for (int i=0;i<name.size();i++){
+                                for (int i = 0; i < name.size(); i++) {
                                     name.get(i).deleteFromRealm();
                                 }
+                                resetFavorite();
+
                             }
                         });
                     }
                 }
             });
+
+        }
+
+        private void resetFavorite() {
+            List<AppInfo> packageList = Utils.getPackageList(FavoriteActivity.this);
+            List<AppInfo> infos = new ArrayList<>();
+            RealmResults<AppDao> all = mRealm.where(AppDao.class).findAll();
+            OUT:
+            for (AppInfo info : packageList) {
+                IN:
+                for (int i = 0; i < all.size(); i++) {
+                    String packageName = all.get(i).getPackageName();
+                    if (packageName.equals(info.getPackageName())) {
+                        infos.add(info);
+                        break IN;
+                    }
+                }
+
+            }
+            RightWindow.getInstance(FavoriteActivity.this).setFavoriteApp(infos);
         }
 
         @Override
@@ -130,7 +155,7 @@ public class FavoriteActivity extends AppCompatActivity {
             return mData.size();
         }
 
-        static class VH extends RecyclerView.ViewHolder {
+         class VH extends RecyclerView.ViewHolder {
             private CheckBox check;
             private TextView tv;
 

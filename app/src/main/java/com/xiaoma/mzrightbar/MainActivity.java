@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        rightWindow = new RightWindow(MainActivity.this);
+        rightWindow = RightWindow.getInstance(MainActivity.this);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,22 +116,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        List<AppInfo> packageList = Utils.getPackageList(MainActivity.this);
-        List<AppInfo> infos = new ArrayList<>();
-        RealmResults<AppDao> all = mRealm.where(AppDao.class).findAll();
-        OUT:
-        for (AppInfo info : packageList) {
-            IN:
-            for (int i = 0; i < all.size(); i++) {
-                String packageName = all.get(i).getPackageName();
-                if (packageName.equals(info.getPackageName())) {
-                    infos.add(info);
-                    break IN;
-                }
-            }
 
-        }
-        rightWindow.setFavoriteApp(infos);
     }
 
     @Override

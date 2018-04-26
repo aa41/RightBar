@@ -182,7 +182,7 @@ public class RightBar extends View {
 
 
     public void setFavoriteApp(List<AppInfo> infos) {
-        if (infos == null || infos.isEmpty()) return;
+        if (infos == null) return;
         this.infos = infos;
         invalidate();
     }
